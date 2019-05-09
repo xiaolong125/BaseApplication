@@ -4,7 +4,7 @@ package com.example.beyond.http.response;
  * Created by codeest on 16/10/10.
  */
 
-public class MyHttpResponse<T> {
+public class BaseResponse<T> {
 
     private int code;
     private String message;

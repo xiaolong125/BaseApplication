@@ -1,7 +1,7 @@
 package com.example.beyond.utils;
 
 import com.example.beyond.http.exception.ApiException;
-import com.example.beyond.http.response.MyHttpResponse;
+import com.example.beyond.http.response.BaseResponse;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -37,17 +37,17 @@ public class RxUtil{
      * @param <T>
      * @return
      */
-    public static <T> FlowableTransformer<MyHttpResponse<T>, T> handleMyResult() {   //compose判断结果
-        return new FlowableTransformer<MyHttpResponse<T>, T>() {
+    public static <T> FlowableTransformer<BaseResponse<T>, T> handleMyResult() {   //compose判断结果
+        return new FlowableTransformer<BaseResponse<T>, T>() {
             @Override
-            public Flowable<T> apply(Flowable<MyHttpResponse<T>> httpResponseFlowable) {
-                return httpResponseFlowable.flatMap(new Function<MyHttpResponse<T>, Flowable<T>>() {
+            public Flowable<T> apply(Flowable<BaseResponse<T>> httpResponseFlowable) {
+                return httpResponseFlowable.flatMap(new Function<BaseResponse<T>, Flowable<T>>() {
                     @Override
-                    public Flowable<T> apply(MyHttpResponse<T> tMyHttpResponse) {
-                        if(tMyHttpResponse.getCode() == 200) {
-                            return createData(tMyHttpResponse.getData());
+                    public Flowable<T> apply(BaseResponse<T> tBaseResponse) {
+                        if(tBaseResponse.getCode() == 200) {
+                            return createData(tBaseResponse.getData());
                         } else {
-                            return Flowable.error(new ApiException(tMyHttpResponse.getMessage(), tMyHttpResponse.getCode()));
+                            return Flowable.error(new ApiException(tBaseResponse.getMessage(), tBaseResponse.getCode()));
                         }
                     }
                 });
