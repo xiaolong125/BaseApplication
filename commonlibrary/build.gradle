@@ -66,5 +66,7 @@ dependencies {
     debugImplementation rootProject.ext.dependencies["leakcanary-android"]
     releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
 
+    implementation rootProject.ext.dependencies["utils"]
+
 
 }

@@ -1,10 +1,8 @@
 package com.example.beyond.manager;
 
-import android.content.Context;
-
+import com.blankj.utilcode.util.NetworkUtils;
+import com.blankj.utilcode.util.PathUtils;
 import com.example.beyond.commonlibrary.BuildConfig;
-import com.example.beyond.constant.Config;
-import com.example.beyond.utils.NetWorkUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +28,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class NetWorkManager{
     private static NetWorkManager mInstance;
-    private Context context;
     public static NetWorkManager getInstance() {
         if (mInstance == null) {
             synchronized (NetWorkManager.class) {
@@ -42,12 +39,6 @@ public class NetWorkManager{
         return mInstance;
     }
 
-    /**
-     * 初始化必要对象和参数
-     */
-    public void init(Context context) {
-        this.context = context;
-    }
 
     public Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
         return builder
@@ -58,6 +49,8 @@ public class NetWorkManager{
                 .build();
     }
 
+
+
     private OkHttpClient createOkhttpClient(){
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
@@ -65,19 +58,20 @@ public class NetWorkManager{
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
             builder.addInterceptor(loggingInterceptor);
         }
-        File cacheFile = new File(Config.getCachePath(context));
+
+        File cacheFile = new File(PathUtils.getInternalAppCodeCacheDir());
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
         Interceptor cacheInterceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException{
                 Request request = chain.request();
-                if (!NetWorkUtil.isNetworkConnected(context)) {
+                if (!NetworkUtils.isConnected()) {
                     request = request.newBuilder()
                             .cacheControl(CacheControl.FORCE_CACHE)
                             .build();
                 }
                 Response response = chain.proceed(request);
-                if (NetWorkUtil.isNetworkConnected(context)) {
+                if (NetworkUtils.isConnected()) {
                     int maxAge = 0;
                     // 有网络时, 不缓存, 最大保存时长为0
                     response.newBuilder()

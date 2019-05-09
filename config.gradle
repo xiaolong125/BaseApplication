@@ -61,6 +61,9 @@ ext{
             "blockcanary-android"       : "com.github.moduth:blockcanary-android:${dependVersion.blockcanary}",
             "blockcanary-no-op"         : "com.github.moduth:blockcanary-no-op:${dependVersion.blockcanary}",
             "leakcanary-android"        : "com.squareup.leakcanary:leakcanary-android:${dependVersion.leakcanary}",
-            "leakcanary-android-no-op"  : "com.squareup.leakcanary:leakcanary-android-no-op:${dependVersion.leakcanary}"
+            "leakcanary-android-no-op"  : "com.squareup.leakcanary:leakcanary-android-no-op:${dependVersion.leakcanary}",
+
+            //utils
+            "utils"                     : "com.blankj:utilcode:1.23.7"
     ]
 }
