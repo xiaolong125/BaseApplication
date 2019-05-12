@@ -1,8 +1,8 @@
-package com.example.beyond.manager;
+package com.dev.common.manager;
 
-import com.example.beyond.model.DBHelper;
-import com.example.beyond.model.HttpHelper;
-import com.example.beyond.model.PreferencesHelper;
+import com.dev.common.model.DBHelper;
+import com.dev.common.model.HttpHelper;
+import com.dev.common.model.PreferencesHelper;
 
 
 
@@ -17,6 +17,4 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper{
         mDbHelper = dbHelper;
         mPreferencesHelper = preferencesHelper;
     }
-
-
 }

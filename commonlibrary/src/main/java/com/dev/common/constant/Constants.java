@@ -1,6 +1,4 @@
-package com.example.beyond.constant;
-
-import java.io.File;
+package com.dev.common.constant;
 
 /**
  * 作者：ly-xuxiaolong

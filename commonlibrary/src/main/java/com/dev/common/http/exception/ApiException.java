@@ -1,4 +1,4 @@
-package com.example.beyond.http.exception;
+package com.dev.common.http.exception;
 
 /**
  * Created by codeest on 2016/8/4.

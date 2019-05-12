@@ -1,4 +1,4 @@
-package com.example.beyond.constant;
+package com.dev.common.constant;
 
 import android.content.Context;
 

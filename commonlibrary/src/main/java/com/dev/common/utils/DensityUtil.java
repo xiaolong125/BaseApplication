@@ -1,4 +1,4 @@
-package com.example.beyond.utils;
+package com.dev.common.utils;
 
 import android.content.Context;
 import android.content.res.Resources;

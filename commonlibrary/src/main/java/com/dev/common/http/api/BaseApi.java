@@ -1,4 +1,4 @@
-package com.example.beyond.http.api;
+package com.dev.common.http.api;
 
 /**
  * 作者：xuxiaolong

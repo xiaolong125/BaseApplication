@@ -1,7 +1,7 @@
-package com.example.beyond.utils;
+package com.dev.common.utils;
 
-import com.example.beyond.http.exception.ApiException;
-import com.example.beyond.http.response.BaseResponse;
+import com.dev.common.http.exception.ApiException;
+import com.dev.common.http.response.BaseResponse;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;

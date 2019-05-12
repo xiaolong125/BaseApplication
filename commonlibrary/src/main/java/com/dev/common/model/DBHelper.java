@@ -1,4 +1,4 @@
-package com.example.beyond.model;
+package com.dev.common.model;
 
 /**
  * 作者：ly-xuxiaolong
@@ -7,5 +7,5 @@ package com.example.beyond.model;
  * 描述：
  * 修订历史：
  */
-public interface PreferencesHelper{
+public interface DBHelper{
 }

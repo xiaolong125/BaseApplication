@@ -1,4 +1,4 @@
-package com.example.beyond.http.response;
+package com.dev.common.http.response;
 
 /**
  * Created by codeest on 16/10/10.

@@ -1,4 +1,4 @@
-package com.example.beyond.manager;
+package com.dev.common.manager;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.PathUtils;

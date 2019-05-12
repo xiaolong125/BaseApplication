@@ -1,4 +1,4 @@
-package com.example.beyond.utils;
+package com.dev.common.utils;
 
 import android.content.res.XmlResourceParser;
 import android.support.v4.util.ArrayMap;
