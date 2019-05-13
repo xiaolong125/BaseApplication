@@ -2,10 +2,14 @@ package com.dev.flygo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.dev.flygo.demo.AllCity;
 import com.dev.flygo.demo.Api;
 import com.dev.flygo.demo.City;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 
@@ -29,28 +33,53 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    private void getAllCity(){
         Retrofit retrofit = createRetrofit();
         Api api = retrofit.create(Api.class);
-        Observable<AllCity> observable = api.getAllCity(baseUrl);
-        observable.subscribeOn(Schedulers.io()).flatMap(new Function<AllCity, ObservableSource<City>>(){
+        Observable<AllCity> observable = api.getAllCity("");
+        observable.subscribeOn(Schedulers.io()).
+                flatMap(new Function<AllCity, ObservableSource<City>>(){
+                    @Override
+                    public ObservableSource<City> apply(AllCity allCity) throws Exception{
+                        ArrayList<City> result = allCity.getResult();
+                        return Observable.fromIterable(result);
+                    }
+                }).filter(new Predicate<City>(){
+                    @Override
+                    public boolean test(City city) throws Exception{
+                        if(Integer.parseInt(city.getId()) < 5){
+                            return true;
+                        }
+                        return false;
+                    }
+                }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<City>(){
+                    @Override
+                    public void accept(City city) throws Exception{
+                        Log.d("消费事件", city.toString());
+                    }
+                });
+    }
+
+    private void getAllProvinces(){
+        Retrofit retrofit = createRetrofit();
+        Api api = retrofit.create(Api.class);
+        api.getProvinces("").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).onBackpressureLatest().subscribeWith(new Subscriber<AllCity>(){
             @Override
-            public ObservableSource<City> apply(AllCity city){
-                ArrayList<City> result = city.getResult();
-                return Observable.fromIterable(result);
+            public void onSubscribe(Subscription s){
             }
-        }).filter(new Predicate<City>(){
+
             @Override
-            public boolean test(City city){
-                String id = city.getId();
-                if(Integer.parseInt(id) < 5){
-                    return true;
-                }
-                return false;
+            public void onNext(AllCity allCity){
             }
-        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<City>(){
+
             @Override
-            public void accept(City city){
-                System.out.println(city);
+            public void onError(Throwable t){
+            }
+
+            @Override
+            public void onComplete(){
             }
         });
     }

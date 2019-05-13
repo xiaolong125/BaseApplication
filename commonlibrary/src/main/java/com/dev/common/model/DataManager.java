@@ -1,10 +1,4 @@
-package com.dev.common.manager;
-
-import com.dev.common.model.DBHelper;
-import com.dev.common.model.HttpHelper;
-import com.dev.common.model.PreferencesHelper;
-
-
+package com.dev.common.model;
 
 public class DataManager implements HttpHelper, DBHelper, PreferencesHelper{
 
@@ -17,4 +11,5 @@ public class DataManager implements HttpHelper, DBHelper, PreferencesHelper{
         mDbHelper = dbHelper;
         mPreferencesHelper = preferencesHelper;
     }
+
 }

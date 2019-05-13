@@ -1,5 +1,6 @@
 package com.dev.flygo.demo;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -14,4 +15,7 @@ import retrofit2.http.Query;
 public interface Api{
     @GET("citys")
     Observable<AllCity> getAllCity(@Query("key") String key);
+
+    @GET("provinces")
+    Flowable<AllCity> getProvinces(@Query("key")String key);
 }
