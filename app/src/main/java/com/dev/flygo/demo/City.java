@@ -22,6 +22,17 @@ public class City{
     private String city;
     private String district;
 
+    public City(String id){
+        this.id = id;
+    }
+
+    public City(String id, String province, String city, String district){
+        this.id = id;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+    }
+
     public String getId(){
         return id;
     }
