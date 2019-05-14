@@ -4,8 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.dev.common.R;
 import com.dev.common.http.interfaces.ILoadingView;
-import com.example.beyond.commonlibrary.R;
 
 /***
  * 自定义loadingView 任何实现ILoadingView的View都可以(突破以前只能使用dialog的限制)
