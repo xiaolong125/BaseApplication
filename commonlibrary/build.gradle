@@ -38,7 +38,8 @@ dependencies {
 
     //ui
     api rootProject.ext.dependencies["constraint-layout"]
-
+//    api 'com.sunfusheng:GlideImageView:1.0.0'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
     //rx
     api rootProject.ext.dependencies["rxjava"]
     api rootProject.ext.dependencies["rxandroid"]
